@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+body {
+  background: #B8ACA5;
+}
+
+#mainDiv {
+  height: 500px;
+  width: 90%;
+  position: relative;
+  overflow: auto;
+}
+
+#jokebox { // music to my ears
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  right: 20px;
+  background: #C25620;
+  color: white;
+  padding: 20px;
+  resize: vertical;
+  transform: translateY(-50%);
+}
+
+.img-round {
+    border-radius: 15%;
+}
+
