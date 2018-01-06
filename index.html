@@ -17,6 +17,15 @@
 	 crossorigin="anonymous"></script>
 </head>
 
+<style>
+/* Ensure same color button across all platforms*/
+.btn-gray
+{
+	background-color: #C4C2C2 !important;
+	border-color: #C4C2C2 !important;
+}
+</style>
+
 <script>
 	$(document).ready(function () {
 		// Function to retrieve joke
@@ -100,7 +109,7 @@
 			<!--div element containing buttons and filler space-->
 			<div class="row text-center">
 				<div class="col-xs-2">
-					<button id="getJoke" class="btn btn-secondary">Cringe Again
+					<button id="getJoke" class="btn btn-gray">Cringe Again
 					</button>
 				</div>
 				<div id="custom-tweet-button" class="col-xs-2 col-xs-offset-6">
