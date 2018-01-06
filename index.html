@@ -1,115 +1,121 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Dad Joke Generator</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
-  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
-  crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<title>Dad Joke Generator</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	 integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
 </head>
 
 <script>
-$(document).ready(function() {
-	  // Function to retrieve joke
-	  $("#getJoke").on("click", function() {
-	    $.getJSON("https://www.reddit.com/r/dadjokes.json", function(json) {
-	      var html = "";
-	      var randChoice = Math.floor(Math.random() * json["data"]["children"].length);
-	      
-	      //Create html element to house text and set-up line
-	      html += "<div class = 'aJoke'>";
-	      html += "<p>" + json["data"]["children"][randChoice]["data"]["title"];
+	$(document).ready(function () {
+		// Function to retrieve joke
+		$("#getJoke").on("click", function () {
+			$.getJSON("https://www.reddit.com/r/dadjokes.json", function (json) {
+				var html = "";
+				var randChoice = Math.floor(Math.random() * json["data"]["children"].length);
 
-	      //Grammar check
-	      if (html.substring(html.length - 3) == "...") {
-	        html += "</p>"
-	      } else if (html.substring(html.length - 1) == "." 
-	                 || html.substring(html.length - 1) == " " 
-	                 || html.substring(html.length - 1) == "!" 
-	                 || html.substring(html.length - 1) == "?") {
-	        html += " </p>";
-	      } else {
-	        html += '. </p>';
-	      } 
+				//Create html element to house text and set-up line
+				html += "<div class = 'aJoke'>";
+				html += "<p>" + json["data"]["children"][randChoice]["data"]["title"];
 
-	      // Add punchline to html
-	      html += "</p>" + json["data"]["children"][randChoice]["data"]["selftext"] + "</p>";
-	      html = html.replace(/(?:\r\n|\r|\n)/g, '<br />');
-	      
-	      // Button HTML code created and updated for new URL linking to Reddit joke
-	      var redditURLhtml = "<a href='" + json["data"]["children"][randChoice]["data"]["url"] + "' target='_blank' >";
-	      redditURLhtml += "<img class='img-round' id = 'snoo' height = '35' width = '35' src ='images/snoo.png'></a>";
-	      
-	      // dadAlias contains a title to bestow upon the user
-	      var dadAlias = ["Sugar Daddy", 
-	              "father-in-training", 
-	              "father", 
-	              "Internet stranger", 
-	              "grandfather", 
-	              "witty adolescent", 
-	              "12-year-old overly eager to become a father", 
-	              "witty adult", 
-	              "papi", 
-	              "reddit user",
-	              "agony inducer", 
-	              "man who is the inspiration for Jeffrey 'The Dude' Lebowski", 
-	              "woman with wit",
-	              "grandfather who just discovered the Internet", 
-	              "Father who secretly worships Harambe", 
-	              "karma seeker", 
-	              "snappy retorter",
-	              "man who has ears of corn", 
-	              "parent made of 95 percent corn", 
-	              "father whose bodily water composition has been replaced by cheese", 
-	              "cheesy person full of gouda jokes"]
-	      var randDadAlias = dadAlias[Math.floor(Math.random() * dadAlias.length)];
-	      
-	      // Credit line
-	      html += "<br /><h6> Agony brought to you by " + randDadAlias + " /u/" + json["data"]["children"][randChoice]["data"]["author"] + "</h6>";
-	      html += "</div>";
-	      
-	      // Send information to the message and redditbLinkButton classes
-	      $(".message").html(html)
-	      $(".redditLinkButton").html(redditURLhtml)
-	    });
-	  });
+				//Grammar check
+				if (html.substring(html.length - 3) == "...") {
+					html += "</p>"
+				} else if (html.substring(html.length - 1) == "."
+					|| html.substring(html.length - 1) == " "
+					|| html.substring(html.length - 1) == "!"
+					|| html.substring(html.length - 1) == "?") {
+					html += " </p>";
+				} else {
+					html += '. </p>';
+				}
+
+				// Add punchline to html
+				html += "</p>" + json["data"]["children"][randChoice]["data"]["selftext"] + "</p>";
+				html = html.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+				// Button HTML code created and updated for new URL linking to Reddit joke
+				var redditURLhtml = "<a href='" + json["data"]["children"][randChoice]["data"]["url"] + "' target='_blank' >";
+				redditURLhtml += "<img class='img-round' id='snoo' height='35' width='35' src='images/snoo.png'></a>";
+
+				// dadAlias contains a title to bestow upon the user
+				var dadAlias = ["Sugar Daddy",
+					"father-in-training",
+					"father",
+					"Internet stranger",
+					"grandfather",
+					"witty adolescent",
+					"witty adult",
+					"papi",
+					"reddit user",
+					"agony inducer",
+					"woman with wit",
+					"karma seeker",
+					"snappy retorter",
+					"man who has ears of corn",
+					"parent made of 95 percent corn",
+					"father whose bodily water composition has been replaced by cheese",
+					"cheesy person full of gouda jokes"]
+				var randDadAlias = dadAlias[Math.floor(Math.random() * dadAlias.length)];
+
+				// Credit line
+				html += "<br /><h6> Agony brought to you by " + randDadAlias + " /u/" + json["data"]["children"][randChoice]["data"]["author"] + "</h6>";
+				html += "</div>";
+
+				// Send information to the message and redditbLinkButton classes
+				$(".message").html(html)
+				$(".redditLinkButton").html(redditURLhtml)
+			});
+		});
 	});
 </script>
-<body>
-<div id = "mainDiv" class="container-fluid">
-  <!--div element to house buttons and joke-->
-  <div id = "jokebox" class="row well col-xs-6 col-xs-offset-3">
 
-    <!--div element containing joke text, taking up one line-->
-    <div class="row text-center">
-      <div class="col-xs-12 message">
-        <p> My grandfather took me on a tour through his neighborhood during a visit to his home country. He pointed at a steam engine and remarked, "Look at that bullet train." </p>
-        <p> He looked at my confused face and responded, "Because with this nation's infastructure you have to run like a bullet to catch the train."</p>
-    <br /><h6>Agony brought to you by Will Khaine, Dad Joke Generator creator</h6>
-      </div>
-    </div>
-    
-    <!--div element containing buttons and filler space-->
-    <div class="row text-center">
-      <div class="col-xs-2">
-        <button id="getJoke" class="btn btn-secondary">Cringe Again
-        </button>
-      </div>
-      <div id = "custom-tweet-button" class="col-xs-2 col-xs-offset-6">
-        <a href="https://twitter.com/intent/tweet?text=Get%20Your%20Dad%20On&url=http%3A%2F%2Fcodepen.io%2Fmankane%2Fpen%2FAXGrkw&hashtags=dadjoke,freecodecamp,codepenio,machineofcheese" target="_blank">
-          <img src = "images/tweet-bird.png" height = "35" width = "35">
-        </a>
-      </div>
-      <div class="col-xs-2 redditLinkButton">
-          <a href="https://www.reddit.com/r/dadjokes/" target="_blank">
-            <img class="img-round" id="snoo" height = "35" width = "35" src="images/snoo.png"></a>
-      </div>
-    </div>
-  </div>
-</div>
+<body>
+	<div id="mainDiv" class="container-fluid">
+		<!--div element to house buttons and joke-->
+		<div id="jokebox" class="row well col-xs-6 col-xs-offset-3">
+
+			<!--div element containing joke text, taking up one line-->
+			<div class="row text-center">
+				<div class="col-xs-12 message">
+					<p>My grandfather took me on a tour through his home country. He pointed at a steam engine and remarked, "Look at that	bullet train."</p>
+					<p>He looked at my confused face and responded, "Because with this nation's infastructure
+						you have to run like a bullet to catch the train."</p>
+					<br />
+					<h6>Agony brought to you by Will Khaine, Dad Joke Generator creator</h6>
+				</div>
+			</div>
+
+			<!--div element containing buttons and filler space-->
+			<div class="row text-center">
+				<div class="col-xs-2">
+					<button id="getJoke" class="btn btn-secondary">Cringe Again
+					</button>
+				</div>
+				<div id="custom-tweet-button" class="col-xs-2 col-xs-offset-6">
+					<a href="https://twitter.com/intent/tweet?text=Get%20Your%20Dad%20On&url=http%3A%2F%2Fcodepen.io%2Fmankane%2Fpen%2FAXGrkw&hashtags=dadjoke,freecodecamp,codepenio,machineofcheese"
+					 target="_blank">
+						<img src="images/tweet-bird.png" height="35" width="35">
+					</a>
+				</div>
+				<div class="col-xs-2 redditLinkButton">
+					<a href="https://www.reddit.com/r/dadjokes/" target="_blank">
+						<img class="img-round" id="snoo" height="35" width="35" src="images/snoo.png">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
