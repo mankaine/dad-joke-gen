@@ -1,29 +1,114 @@
-@CHARSET "UTF-8";
-
 body {
   background: #B8ACA5;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-#mainDiv {
-  height: 500px;
-  width: 90%;
-  position: relative;
-  overflow: auto;
-}
-
-#jokebox { // music to my ears
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  right: 20px;
+.jokebox { /* music to my ears */
   background: #C25620;
+  border: 1px solid white;
+  border-radius: 5px;
   color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
   padding: 20px;
+  position: relative;
   resize: vertical;
   transform: translateY(-50%);
+  top: 45vh;
+  width: 50%;
+}
+
+.joke {
+  text-align: center;
+}
+
+.joke h6 {
+  font-size: 0.75em;
+}
+
+@media screen and (max-width: 900px) {
+  .jokebox {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .jokebox {
+    width: 90%;
+  }
 }
 
 .img-round {
     border-radius: 15%;
 }
 
+.btn-gray {
+	background-color: #C4C2C2 !important;
+  border-color: #C4C2C2 !important;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 0;
+  padding: 0.5em 1em;
+  color: white;
+}
+
+.btn-gray:hover {
+  color: black;
+}
+
+.btn-gray:active {
+  color: black;
+}
+
+.row {
+  flex-basis: 100%;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.cringe-again-button-container {
+  flex-basis: 80%;
+}
+
+.social-media-button-container {
+  flex-basis: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width: 520px) {
+  .cringe-again-button-container {
+    flex-basis: 75%;
+  }
+
+  .social-media-button-container {
+    flex-basis: 25%;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .cringe-again-button-container {
+    flex-basis: 60%;
+  }
+
+  .social-media-button-container {
+    flex-basis: 40%;
+  }
+}
+
+.reddit-link-button {
+  flex-basis: 40%;
+}
+
+.custom-tweet-button {
+  flex-basis: 40%;
+}
